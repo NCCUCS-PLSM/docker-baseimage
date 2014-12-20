@@ -1,4 +1,7 @@
-FROM ubuntu:14.04
+FROM ubuntu:14.10
+# Modified by
+MAINTAINER Atkins Chang "atkinschang@icloud.com"
+# Origin form
 MAINTAINER Phusion <info@phusion.nl>
 
 ENV HOME /root

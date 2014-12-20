@@ -44,11 +44,7 @@ cp /build/00_regen_ssh_host_keys.sh /etc/my_init.d/
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
 chown root:root /root/.ssh
-cp /build/insecure_key.pub /etc/insecure_key.pub
-cp /build/insecure_key /etc/insecure_key
-chmod 644 /etc/insecure_key*
-chown root:root /etc/insecure_key*
-cp /build/bin/enable_insecure_key /usr/sbin/
+cp /build/bin/key_util /usr/sbin/
 
 ## Install cron daemon.
 $minimal_apt_get_install cron

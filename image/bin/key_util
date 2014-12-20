@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -e
+
+AUTHORIZED_KEYS=/root/.ssh/authorized_keys
+TEMP_KEY_NAME=tempkey
+
+DIR=`dirname "$AUTHORIZED_KEYS"`
+
+if [ $# -eq 0 ]
+then
+    OLD_PUBLIC_KEY=`cat /tmp/${TEMP_KEY_NAME}.pub`
+    PUBLIC_KEY=$(< /dev/stdin);
+    echo "Editing $AUTHORIZED_KEYS..."
+    sed -i "s|^$OLD_PUBLIC_KEY$|$PUBLIC_KEY|g" $AUTHORIZED_KEYS
+    rm /tmp/${TEMP_KEY_NAME}*
+    echo "Success: your key has been added to $AUTHORIZED_KEYS"
+elif [[ $# -eq 1 ]] && [[ $1 -eq "init" ]] && [ ! -f $AUTHORIZED_KEYS ];
+then
+    echo "Creating key ${DIR}/id_rsa..."
+    echo -e  'y\n'|ssh-keygen -q -t rsa -N "" -f /tmp/${TEMP_KEY_NAME}
+    chmod 700 "$DIR"
+    chown root:root "$DIR"
+    echo "Editing $AUTHORIZED_KEYS..."
+    cat /tmp/${TEMP_KEY_NAME}.pub >> "$AUTHORIZED_KEYS"
+    echo "Success: temp key has been added to $AUTHORIZED_KEYS"
+    cat <<-EOF
+
+                +------------------------------------------------------------------------------+
+                | Temp SSH key installed                                                       |
+                |                                                                              |
+                | DO NOT expose port 22 on the Internet unless you know what you are doing!    |
+                |                                                                              |
+                | Use the private key and command below to replace auth for user root          |
+                +------------------------------------------------------------------------------+
+
+EOF
+    IP=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+    echo -e "Command:\ncat ~/.ssh/id_rsa.pub | ssh root@${IP} -i [KEY_FILE] ${0}"
+    echo -e "\nKey (Please store in file):\n"
+    cat /tmp/${TEMP_KEY_NAME}
+    echo -e "\n\n"
+else
+    exit 0;
+fi

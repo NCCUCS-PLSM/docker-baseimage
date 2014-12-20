@@ -1,5 +1,5 @@
-NAME = phusion/baseimage
-VERSION = 0.9.15
+NAME = atkins/baseimage
+VERSION = 0.0.1
 
 .PHONY: all build test tag_latest release ssh
 
