@@ -3,7 +3,7 @@ set -e
 source /build/buildconfig
 set -x
 
-JDK_DOWNLOAD_URL=http://www.java.net/download/jdk8u40/archive/b19/binaries/jdk-8u40-ea-bin-b19-linux-x64-16_dec_2014.tar.gz
+JDK_DOWNLOAD_URL=http://www.java.net/download/jdk7u80/archive/b03/binaries/jdk-7u80-ea-bin-b03-linux-x64-19_nov_2014.tar.gz
 JDK_INSTALL_BASEDIR=/usr/lib/jvm
 INSTALL_COMMANDS="java javac javadoc javah javap jps" 
 
