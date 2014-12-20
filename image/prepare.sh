@@ -48,3 +48,6 @@ apt-get dist-upgrade -y --no-install-recommends
 ## Fix locale.
 $minimal_apt_get_install language-pack-en
 locale-gen en_US
+
+## Work around script for using net=host
+cp /build/bin/workaround-pam /usr/bin/
