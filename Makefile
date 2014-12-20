@@ -1,5 +1,5 @@
 NAME = atkins/baseimage
-VERSION = 0.0.1-base
+VERSION = master
 
 .PHONY: all build test tag_latest release ssh
 
