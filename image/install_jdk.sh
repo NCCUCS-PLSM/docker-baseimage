@@ -16,7 +16,7 @@ else
   echo "Error finding jdk filename"; 
 fi
 
-JCE_DOWNLOAD_URL=http://download.oracle.com/otn-pub/java/jce/${JDK_MAJOR_VERION}/jce_policy-${JDK_MAJOR_VERION}.zip
+JCE_DOWNLOAD_URL=http://download.oracle.com/otn-pub/java/jce/${JDK_MAJOR_VERION}/UnlimitedJCEPolicyJDK${JDK_MAJOR_VERION}.zip
 
 if [[ $JCE_DOWNLOAD_URL =~ .+/(.+)$ ]]; 
 then 
@@ -34,7 +34,7 @@ tar -zxf $JDK_FILENAME
 mv ${JAVA_UNTAR_DIR} ${JDK_INSTALL_BASEDIR}/${JAVA_INSTALL_DIR}
 rm -rf $JDK_FILENAME
 
-JCE_UNZIP_DIR=UnlimitedJCEPolicyJDK${JDK_MAJOR_VERION}
+JCE_UNZIP_DIR=UnlimitedJCEPolicy
 wget --no-check-certificate --header "Cookie:oraclelicense=accept-securebackup-cookie" $JCE_DOWNLOAD_URL
 unzip $JCE_FILENAME
 mv ${JCE_UNZIP_DIR}/*.jar ${JDK_INSTALL_BASEDIR}/${JAVA_INSTALL_DIR}/jre/lib/security 
