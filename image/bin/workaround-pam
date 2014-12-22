@@ -11,7 +11,7 @@ cd ${WORKING_DIR} && apt-get -b source pam && dpkg -i libpam-doc*.deb libpam-mod
 rm -rf $WORKING_DIR
 
 # for building docekrfile keeping image minimal 
-if [[ $1 -eq "build"  ]];
+if [[ $1 -eq "build"  ]]
 then
   apt-get purge -y --auto-remove $(apt-cache showsrc pam | sed -e '/Build-Depends/!d;s/Build-Depends.*: \|,\|([^)]*),*\|\[[^]]*\]//g')
   apt-get autoremove -y
