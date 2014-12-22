@@ -3,7 +3,7 @@
 set -e
 
 WORKING_DIR=/tmp/workaround-pam
-CONFIGURE_OPTS=--disable-audit
+export CONFIGURE_OPTS="--disable-audit"
 
 apt-get update && apt-get -y build-dep pam
 mkdir -p $WORKING_DIR
