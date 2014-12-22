@@ -9,5 +9,10 @@ apt-get update && apt-get -y build-dep pam
 mkdir -p $WORKING_DIR
 cd ${WORKING_DIR} && apt-get -b source pam && dpkg -i libpam-doc*.deb libpam-modules*.deb libpam-runtime*.deb libpam0g*.deb
 rm -rf $WORKING_DIR
-apt-get purge -y --auto-remove $(apt-cache showsrc pam | sed -e '/Build-Depends/!d;s/Build-Depends.*: \|,\|([^)]*),*\|\[[^]]*\]//g')
-apt-get autoremove -y
+
+# for building docekrfile keeping image minimal 
+if [[ $1 -eq "build"  ]];
+then
+  apt-get purge -y --auto-remove $(apt-cache showsrc pam | sed -e '/Build-Depends/!d;s/Build-Depends.*: \|,\|([^)]*),*\|\[[^]]*\]//g')
+  apt-get autoremove -y
+fi
