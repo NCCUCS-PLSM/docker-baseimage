@@ -27,3 +27,9 @@ ssh:
 		IP=$$(docker inspect $$ID | grep IPAddr | sed 's/.*: "//; s/".*//') && \
 		echo "SSHing into $$IP" && \
 		ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i image/insecure_key root@$$IP
+runit:
+	@rm -rf deb-temp
+	@rm -rf image/runit-deb
+	@mkdir deb-temp
+	@cd deb-temp && aptitude download runit && find . -type f -name '*.deb' -exec dpkg -x '{}' ../image/runit-deb \; && cd ..
+	@rm -rf deb-temp
