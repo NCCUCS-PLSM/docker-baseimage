@@ -16,6 +16,7 @@ echo -n no > /etc/container_environment/INITRD
 $minimal_yum_install wget
 wget http://ftp.yzu.edu.tw/Linux/Fedora-EPEL/7/x86_64/e/epel-release-7-5.noarch.rpm
 yum localinstall -y epel-release-7-5.noarch.rpm
+rm epel-release-7-5.noarch.rpm
 
 ## Workaround https://github.com/dotcloud/docker/issues/2267,
 ## not being able to modify /etc/hosts.
