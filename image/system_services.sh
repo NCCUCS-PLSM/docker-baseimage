@@ -5,7 +5,7 @@ set -x
 
 $minimal_yum_install centos-release-SCL
 $minimal_yum_install python33
-#cp -p /build/bin/python3 /usr/bin/python3
+cp -p /build/bin/python3 /usr/bin/python3
 ## Install init process.
 cp /build/bin/my_init /sbin/
 mkdir -p /etc/my_init.d
