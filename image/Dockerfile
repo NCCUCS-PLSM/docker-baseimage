@@ -1,4 +1,4 @@
-FROM ubuntu:14.10
+FROM ubuntu:15.04
 # Modified by
 MAINTAINER Atkins Chang "atkinschang@icloud.com"
 # Origin form
