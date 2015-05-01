@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos:6.6
 # Modified by
 MAINTAINER Atkins Chang "atkinschang@icloud.com"
 # Origin form
