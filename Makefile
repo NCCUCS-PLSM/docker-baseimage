@@ -1,5 +1,5 @@
 NAME = atkins/baseimage
-VERSION = 0.0.2-jdk7
+VERSION = 0.0.4-jdk7
 
 .PHONY: all build test tag_latest release ssh
 
