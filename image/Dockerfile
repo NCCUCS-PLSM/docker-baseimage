@@ -1,11 +1,10 @@
-FROM ubuntu:14.10
+FROM ubuntu:15.04
 # Modified by
 MAINTAINER Atkins Chang "atkinschang@icloud.com"
 # Origin form
 MAINTAINER Phusion <info@phusion.nl>
 
 ENV HOME /root
-RUN mkdir /build
 ADD . /build
 
 RUN /build/prepare.sh && \
