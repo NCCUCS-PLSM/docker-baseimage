@@ -3,16 +3,10 @@
 set -e
 
 WORKING_DIR=/tmp/workaround-pam
-export CONFIGURE_OPTS="--disable-audit"
 
-apt-get update && apt-get -y build-dep pam
+yum install -y tar bzip2 yum-utils rpm-build
 mkdir -p $WORKING_DIR
-cd ${WORKING_DIR} && apt-get -b source pam && dpkg -i libpam-doc*.deb libpam-modules*.deb libpam-runtime*.deb libpam0g*.deb
+cd ${WORKING_DIR} && yum-builddep -y pam && yumdownloader --source pam && rpmbuild --rebuild  --define 'WITH_AUDIT 0' --define 'dist +noaudit' pam*.src.rpm
+rpm -Uvh --oldpackage ~/rpmbuild/RPMS/*/pam*+noaudit*.rpm
 rm -rf $WORKING_DIR
-
-# for building docekrfile keeping image minimal 
-if [[ $1 -eq "build"  ]]
-then
-  apt-get purge -y --auto-remove $(apt-cache showsrc pam | sed -e '/Build-Depends/!d;s/Build-Depends.*: \|,\|([^)]*),*\|\[[^]]*\]//g')
-  apt-get autoremove -y
-fi
+rm -rf ~/rpmbuild

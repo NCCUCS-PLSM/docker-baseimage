@@ -3,7 +3,6 @@ set -e
 if [[ ! -e /etc/ssh/ssh_host_rsa_key ]]; then
 	echo "No SSH host key available. Generating one..."
 	export LC_ALL=C
-	export DEBIAN_FRONTEND=noninteractive
 	echo "Creating SSH1 key; this may take some time ..."
 	ssh-keygen -q -f "/etc/ssh/ssh_host_key" -N '' -t rsa1
 	echo "Creating SSH2 RSA key; this may take some time ..."

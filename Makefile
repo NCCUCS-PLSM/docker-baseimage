@@ -1,5 +1,5 @@
 NAME = atkins/baseimage
-VERSION = master
+VERSION = centos-6
 
 .PHONY: all build test tag_latest release ssh
 

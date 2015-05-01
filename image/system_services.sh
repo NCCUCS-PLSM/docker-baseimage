@@ -3,8 +3,8 @@ set -e
 source /build/buildconfig
 set -x
 
-#$minimal_yum_install centos-release-SCL
-#$minimal_yum_install python33
+$minimal_yum_install centos-release-SCL
+$minimal_yum_install python33
 #cp -p /build/bin/python3 /usr/bin/python3
 ## Install init process.
 cp /build/bin/my_init /sbin/
@@ -34,12 +34,15 @@ cp /build/config/syslog_ng_default /etc/default/syslog-ng
 # Replace the system() source because inside Docker we
 # can't access /proc/kmsg.
 sed -i -E 's/^(\s*)system\(\);/\1unix-stream("\/dev\/log");/' /etc/syslog-ng/syslog-ng.conf
+mkdir /etc/service/syslog-forwarder
+cp /build/runit/syslog-forwarder /etc/service/syslog-forwarder/run
 
 ## Install logrotate.
 $minimal_yum_install logrotate
+cp /build/config/logrotate_syslogng /etc/logrotate.d/syslog-ng
 
 ## Install the SSH server.
-$minimal_yum_install openssh-server
+$minimal_yum_install openssh-server openssh-clients
 mkdir /var/run/sshd
 mkdir /etc/service/sshd
 cp /build/runit/sshd /etc/service/sshd/run
@@ -55,6 +58,7 @@ cp /build/bin/key_util /usr/sbin/
 ## Install cron daemon.
 $minimal_yum_install cronie
 mkdir /etc/service/cron
+chmod 600 /etc/crontab
 cp /build/runit/cron /etc/service/cron/run
 
 ## Remove useless cron entries.

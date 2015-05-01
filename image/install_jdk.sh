@@ -25,7 +25,6 @@ else
   echo "Error finding jce filename"; 
 fi
 
-$minimal_yum_install unzip wget tar
 JAVA_INSTALL_DIR=java-${JDK_MAJOR_VERION}-oracle-amd64
 JAVA_UNTAR_DIR=jdk1.${JDK_MAJOR_VERION}.0_${JDK_MINOR_VERSION}
 wget --no-check-certificate --header "Cookie:oraclelicense=accept-securebackup-cookie" $JDK_DOWNLOAD_URL

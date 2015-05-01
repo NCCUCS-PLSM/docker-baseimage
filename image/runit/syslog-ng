@@ -6,6 +6,7 @@ set -e
 # then we remove it.
 if [ ! -S /dev/log ]; then rm -f /dev/log; fi
 if [ ! -S /var/lib/syslog-ng/syslog-ng.ctl ]; then rm -f /var/lib/syslog-ng/syslog-ng.ctl; fi
+
 SYSLOGNG_OPTS=""
 
 [ -r /etc/default/syslog-ng ] && . /etc/default/syslog-ng
@@ -27,5 +28,5 @@ then
   chown root:adm /dev/xconsole
   [ -x /sbin/restorecon ] && /sbin/restorecon $XCONSOLE
 fi
-mkdir -p /var/run/syslog-ng
-exec syslog-ng -F -p /var/run/syslog-ng/syslog-ng.pid $SYSLOGNG_OPTS
+
+exec syslog-ng -F -p /var/run/syslog-ng.pid $SYSLOGNG_OPTS
