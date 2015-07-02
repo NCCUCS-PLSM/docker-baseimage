@@ -1,5 +1,5 @@
 NAME = atkins/baseimage
-BRANCH = base
+BRANCH = jdk8
 VERSION = $(BRANCH)-0.0.5
 
 .PHONY: all build test tag_latest release ssh
