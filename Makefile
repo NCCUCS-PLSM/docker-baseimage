@@ -1,4 +1,4 @@
-NAME = atkins/baseimage
+NAME = nccucsplsm/baseimage
 BRANCH = base
 VERSION = $(BRANCH)-0.0.5
 
