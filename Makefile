@@ -1,4 +1,4 @@
-NAME = atkins/baseimage
+NAME = nccucsplsm/baseimage
 BRANCH = jdk8
 VERSION = $(BRANCH)-0.0.5
 
